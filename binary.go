@@ -7,19 +7,24 @@ import (
 )
 
 type student struct {
-	age uint32
-	score uint32
+	Age uint32
+	Score uint32
 }
 
 func main(){
-	var dujianglin = student{21, 80}
-	fmt.Println(dujianglin)
 	buf := new(bytes.Buffer)
+
+	var dujianglin = student{21, 80}
+	fmt.Println("dujianglin", dujianglin)
 	err := binary.Write(buf, binary.LittleEndian, dujianglin)
 	if err!= nil {
 		fmt.Println("wrong:", err)
 	}
-	var s = buf.Bytes()
-	var prt = student{binary.LittleEndian.Uint32(s), binary.LittleEndian.Uint32(s[4:])}
-	fmt.Println(prt)
+
+	var djl = student{1, 1}
+	err = binary.Read(buf, binary.LittleEndian, &djl)
+	if err!= nil {
+		fmt.Println("wrong:", err)
+	}	
+	fmt.Println("djl", djl)
 }
