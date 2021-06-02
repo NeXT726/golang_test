@@ -7,8 +7,8 @@ import (
 )
 
 type student struct {
-	age uint8
-	score uint8
+	age uint32
+	score uint32
 }
 
 func main(){
@@ -19,5 +19,7 @@ func main(){
 	if err!= nil {
 		fmt.Println("wrong:", err)
 	}
-	fmt.Printf("%d", buf.Bytes())
+	var s = buf.Bytes()
+	var prt = student{binary.LittleEndian.Uint32(s), binary.LittleEndian.Uint32(s[4:])}
+	fmt.Println(prt)
 }
