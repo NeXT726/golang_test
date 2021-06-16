@@ -1,3 +1,5 @@
+//学习golang数组与C数组的指针转化 与 读写。
+
 package main
 
 //#cgo CFLAGS:
